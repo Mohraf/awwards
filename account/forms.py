@@ -37,3 +37,13 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class UserChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'email',
+            'name',
+        )
