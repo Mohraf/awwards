@@ -88,3 +88,15 @@ class ChangePasswordForm(PasswordChangeForm):
             'new_password2',
             Submit('update', 'Update Password', css_class='btn primary')
         )
+
+
+class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'username',
+            'password',
+            Submit('login', 'Login', css_class='btn-primary')
+        )
