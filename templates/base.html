@@ -1,0 +1,47 @@
+{% load bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    .messages {
+        list-style: none;
+    }
+    .red, .red:hover, .red:visited,
+    .red:active, .red:focus, .red:link {
+        color: #d9534f;
+    }
+    .card-link {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/aaeed7d0a3.js" crossorigin="anonymous"></script>
+  <title>Awwards</title>
+</head>
+<body>
+  {% include "navbar.html" %}
+
+  {% block content %} {%endblock%}
+
+  {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+
+    
+    <script>
+      var myModal = document.getElementById('myModal')
+      var myInput = document.getElementById('myInput')
+
+      myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+      })
+    </script>
+  {% endblock %}
+</body>
+</html>
