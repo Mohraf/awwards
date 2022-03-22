@@ -61,3 +61,16 @@ class SignUpForm(UserCreationForm):
             'password2',
             Submit('signup', 'Sign up', css_class='btn primary')
         )
+
+
+class UpdateAccountForm(UserChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(UpdateAccountForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'username',
+            'email',
+            'name',
+            Submit('update', 'Update Account', css_class='btn primary')
+        )
