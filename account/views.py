@@ -44,3 +44,30 @@ class UpdateAccountView(
     template_name = 'accounts/account_form.html'
     slug_field = 'username'
     slug_url_kwarg = 'username'
+
+
+class ChangePasswordView(
+        views.LoginRequiredMixin,
+        views.FormValidMessageMixin,
+        generic.FormView
+):
+    form_valid_message = 'Successfully updated your password.'
+    form_class = ChangePasswordForm
+    success_url = reverse_lazy('home')
+    template_name = 'accounts/account_form.html'
+
+    def form_valid(self, form):
+        self.request.user.set_password(form.cleaned_data['new_password1'])
+        self.request.user.save()
+
+        return super(ChangePasswordView, self).form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            self.initial['user'] = self.request.user
+        except AttributeError:
+            raise Http404
+
+        return super(ChangePasswordView, self).dispatch(
+            request, *args, **kwargs)
+
