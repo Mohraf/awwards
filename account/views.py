@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 
 from braces import views
 
-from .models import User, Connection
+from .models import User
 from .forms import SignUpForm, UpdateAccountForm, LoginForm, ChangePasswordForm
 from .helpers import get_current_user
 
