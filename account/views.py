@@ -103,3 +103,12 @@ class LoginView(
             return super(LoginView, self).form_valid(form)
         else:
             return self.form_invalid(form)
+
+
+class ListAccountView(
+        views.LoginRequiredMixin,
+        generic.ListView
+):
+    model = User
+    template_name = 'accounts/account_list.html'
+    context_object_name = 'users'
