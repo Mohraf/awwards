@@ -49,3 +49,12 @@ class UsabilityRating(models.Model):
 
   def __str__(self):
       return '{} : {}'.format(self.user, self.post)
+
+
+class ContentRating(models.Model):
+  post = models.ForeignKey(Post, related_name='rated_post_content', on_delete=models.CASCADE)
+  user = models.ForeignKey(User, related_name='content_rater', on_delete=models.CASCADE)
+  date_created = models.DateTimeField(auto_now_add=True)
+
+  def __str__(self):
+      return '{} : {}'.format(self.user, self.post)
