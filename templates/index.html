@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{block.super}}
+
+{% if user.is_authenticated %}
+    {% for post in posts  %}
+        <div class="container">
+            <div class="col-3"></div>
+            <div class="col-6">
+                {% include 'posts/post.html' %}
+            </div>
+            <div class="col-3"></div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Welcome to Instagram. Please log in.</p>
+{% endif %}
+
+{% endblock %}
