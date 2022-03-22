@@ -40,3 +40,12 @@ class DesignRating(models.Model):
 
   def __str__(self):
       return '{} : {}'.format(self.user, self.post)
+
+
+class UsabilityRating(models.Model):
+  post = models.ForeignKey(Post, related_name='rated_post_usability', on_delete=models.CASCADE)
+  user = models.ForeignKey(User, related_name='usability_rater', on_delete=models.CASCADE)
+  date_created = models.DateTimeField(auto_now_add=True)
+
+  def __str__(self):
+      return '{} : {}'.format(self.user, self.post)
