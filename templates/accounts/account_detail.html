@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>@{{ username }}</h1>
+    <h3>{{ object.name }}</h3>
+    {% if user.username == username %}
+        <a href="{% url 'account:update' user %}" class="btn btn-success">Edit profile</a>
+    {% elif connected %}
+    <a href="{% url 'account:unfollow' username %}" class="btn btn-success">Unfollow</a>
+    {% else  %}
+        <a href="{% url 'account:follow' username %}" class="btn btn-primary">Follow</a>
+    {% endif %}
+    <a href="{% url 'account:followers' username %}">followers: {{ followers }}</a>
+    <a href="{% url 'account:following' username %}">following: {{ following }}</a>
+
+    <div class="row">
+        {% for post in posts %}
+        <div class="col">
+            {% include 'posts/post.html' %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
