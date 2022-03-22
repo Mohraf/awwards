@@ -112,3 +112,10 @@ class ListAccountView(
     model = User
     template_name = 'accounts/account_list.html'
     context_object_name = 'users'
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'You\'ve been logged out. Come back soon!')
+    return HttpResponseRedirect(reverse_lazy('home'))
