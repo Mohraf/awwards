@@ -74,3 +74,17 @@ class UpdateAccountForm(UserChangeForm):
             'name',
             Submit('update', 'Update Account', css_class='btn primary')
         )
+
+
+class ChangePasswordForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        user = kwargs['initial']['user']
+        super(ChangePasswordForm, self).__init__(user, *args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'old_password',
+            'new_password1',
+            'new_password2',
+            Submit('update', 'Update Password', css_class='btn primary')
+        )
