@@ -47,3 +47,17 @@ class UserChangeForm(forms.ModelForm):
             'email',
             'name',
         )
+
+
+class SignUpForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super(SignUpForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'username',
+            'email',
+            'password1',
+            'password2',
+            Submit('signup', 'Sign up', css_class='btn primary')
+        )
