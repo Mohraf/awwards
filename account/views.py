@@ -30,4 +30,17 @@ class DetailAccountView(
 
         context['user'] = get_current_user(self.request)
 
-        return 
+        return
+
+
+class UpdateAccountView(
+        views.LoginRequiredMixin,
+        views.FormValidMessageMixin,
+        generic.UpdateView
+):
+    model = User
+    form_valid_message = 'Successfully updated your account.'
+    form_class = UpdateAccountForm
+    template_name = 'accounts/account_form.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
