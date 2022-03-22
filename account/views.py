@@ -71,3 +71,15 @@ class ChangePasswordView(
         return super(ChangePasswordView, self).dispatch(
             request, *args, **kwargs)
 
+
+class SignUpView(
+        views.AnonymousRequiredMixin,
+        views.FormValidMessageMixin,
+        generic.CreateView
+):
+    model = User
+    form_class = SignUpForm
+    form_valid_message = 'Successfully created your account, ' \
+                         'go ahead and login.'
+    success_url = reverse_lazy('account:login')
+    template_name = 'accounts/account_form.html'
