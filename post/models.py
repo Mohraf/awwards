@@ -31,3 +31,12 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post:view', kwargs={'slug': self.slug})
+
+
+class DesignRating(models.Model):
+  post = models.ForeignKey(Post, related_name='rated_post_design', on_delete=models.CASCADE)
+  user = models.ForeignKey(User, related_name='design_rater', on_delete=models.CASCADE)
+  date_created = models.DateTimeField(auto_now_add=True)
+
+  def __str__(self):
+      return '{} : {}'.format(self.user, self.post)
